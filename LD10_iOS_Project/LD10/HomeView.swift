@@ -110,7 +110,7 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
-            .navigationDestination(item: $selected) { section in
+                        .navigationDestination(item: $selected) { section in
                 if store.isReady {
                     WebsitePage(url: store.page(section.file), title: section.title)
                 }
