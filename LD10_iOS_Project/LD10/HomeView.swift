@@ -109,13 +109,14 @@ struct HomeView: View {
                     .padding(18)
                 }
             }
-            .navigationBarHidden(true)
-            .navigationDestination(isPresented: Binding(
+            .navigationBarHidden(.navigationDestination(isPresented: Binding(
     get: { selected != nil },
     set: { if !$0 { selected = nil } }
 )) {
-    if let section = selected {
-        SectionView(section: section)
+    if let section = selected, store.isReady {
+        WebsitePage(url: store.page(section.file), title: section.title)
+    }
+}
     }
 }
                 if store.isReady {
