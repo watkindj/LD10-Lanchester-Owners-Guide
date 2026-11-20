@@ -109,7 +109,7 @@ struct HomeView: View {
                     .padding(18)
                 }
             }
-            .navigationBarHidden(.navigationDestination(isPresented: Binding(
+            .navigationBarHidden(true)
     get: { selected != nil },
     set: { if !$0 { selected = nil } }
 )) {
