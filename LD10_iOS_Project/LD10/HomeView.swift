@@ -171,6 +171,7 @@ struct WebsitePage: View {
             .background(.white)
     }
 }
+}
 
 struct OfflineWebView: UIViewRepresentable {
     let url: URL
