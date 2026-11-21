@@ -64,9 +64,9 @@
 			);
 			buildRules = ();
 			dependencies = ();
-packageProductDependencies = (
-    A90000000000000000000001 /* ZIPFoundation */,
-);
+            packageProductDependencies = (
+                A90000000000000000000001 /* ZIPFoundation */,
+            );
 			name = LD10;
 			productName = LD10;
 			productReference = A20000000000000000000004 /* LD10.app */;
