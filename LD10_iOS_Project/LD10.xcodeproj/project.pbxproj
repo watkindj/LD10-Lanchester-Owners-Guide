@@ -193,7 +193,7 @@ productRefGroup = A40000000000000000000003;
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-/* End XCConfigurationList 
+/* End XCConfigurationList section */
 /* Begin XCRemoteSwiftPackageReference section */
 A90000000000000000000002 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
     isa = XCRemoteSwiftPackageReference;
