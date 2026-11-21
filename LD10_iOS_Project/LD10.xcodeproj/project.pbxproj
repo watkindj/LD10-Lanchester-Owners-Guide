@@ -93,7 +93,7 @@
 			knownRegions = (en, Base);
 			mainGroup = A40000000000000000000001;
 			packageReferences = (A90000000000000000000002 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,);
-productRefGroup = A40000000000000000000003;
+            productRefGroup = A40000000000000000000003 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (A50000000000000000000001,);
