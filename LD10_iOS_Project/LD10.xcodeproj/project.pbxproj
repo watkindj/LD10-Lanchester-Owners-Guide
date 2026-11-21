@@ -1,32 +1,194 @@
+
 // !$*UTF8*$!
 {
-  archiveVersion = 1;
-  objectVersion = 60;
-  objects = {
-    A00000000000000000000001 = { isa = PBXProject; attributes = { BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 1600; }; buildConfigurationList = A00000000000000000000009; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en, Base); mainGroup = A000000000000000000002; packageReferences = (A000000000000000000010,); productRefGroup = A000000000000000000003; projectDirPath = ""; projectRoot = ""; targets = (A000000000000000000004,); };
-    A000000000000000000002 = { isa = PBXGroup; children = (A000000000000000000005, A000000000000000000006, A000000000000000000007, A000000000000000000003); sourceTree = "<group>"; };
-    A000000000000000000003 = { isa = PBXGroup; children = (A000000000000000000008,); name = Products; sourceTree = "<group>"; };
-    A000000000000000000004 = { isa = PBXNativeTarget; buildConfigurationList = A00000000000000000000A; buildPhases = (A00000000000000000000B, A00000000000000000000C, A00000000000000000000D); buildRules = (); dependencies = (); name = LD10; packageProductDependencies = (A000000000000000000011,); productName = LD10; productReference = A000000000000000000008; productType = "com.apple.product-type.application"; };
-    A000000000000000000005 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LD10App.swift; sourceTree = "<group>"; };
-    A000000000000000000006 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-    A000000000000000000007 = { isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
-    A000000000000000000008 = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LD10.app; sourceTree = BUILT_PRODUCTS_DIR; };
-    A00000000000000000000B = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A000000000000000000012, A000000000000000000013,); runOnlyForDeploymentPostprocessing = 0; };
-    A00000000000000000000C = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A000000000000000000014,); runOnlyForDeploymentPostprocessing = 0; };
-    A00000000000000000000D = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A000000000000000000020,); runOnlyForDeploymentPostprocessing = 0; };
-    A000000000000000000012 = { isa = PBXBuildFile; fileRef = A000000000000000000005; };
-    A000000000000000000013 = { isa = PBXBuildFile; fileRef = A000000000000000000006; };
-    A000000000000000000014 = { isa = PBXBuildFile; productRef = A000000000000000000011; };
-    A000000000000000000020 = { isa = PBXBuildFile; fileRef = A000000000000000000007; };
-    
-    A000000000000000000009 = { isa = XCConfigurationList; buildConfigurations = (A000000000000000000017, A000000000000000000018,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-    A00000000000000000000A = { isa = XCConfigurationList; buildConfigurations = (A000000000000000000019, A00000000000000000001A,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
-    A000000000000000000017 = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; }; name = Debug; };
-    A000000000000000000018 = { isa = XCBuildConfiguration; buildSettings = { IPHONEOS_DEPLOYMENT_TARGET = 16.0; SWIFT_VERSION = 5.0; }; name = Release; };
-    A000000000000000000019 = { isa = XCBuildConfiguration; buildSettings = { PRODUCT_BUNDLE_IDENTIFIER = uk.co.ld10.ownersguide; PRODUCT_NAME = LD10; INFOPLIST_KEY_CFBundleDisplayName = "LD10 Owners Guide"; INFOPLIST_KEY_UILaunchScreen_Generation = YES; TARGETED_DEVICE_FAMILY = "1,2"; SWIFT_VERSION = 5.0; IPHONEOS_DEPLOYMENT_TARGET = 16.0; GENERATE_INFOPLIST_FILE = YES; }; name = Debug; };
-    A00000000000000000001A = { isa = XCBuildConfiguration; buildSettings = { PRODUCT_BUNDLE_IDENTIFIER = uk.co.ld10.ownersguide; PRODUCT_NAME = LD10; INFOPLIST_KEY_CFBundleDisplayName = "LD10 Owners Guide"; INFOPLIST_KEY_UILaunchScreen_Generation = YES; TARGETED_DEVICE_FAMILY = "1,2"; SWIFT_VERSION = 5.0; IPHONEOS_DEPLOYMENT_TARGET = 16.0; GENERATE_INFOPLIST_FILE = YES; }; name = Release; };
-    A000000000000000000010 = { isa = XCRemoteSwiftPackageReference; repositoryURL = "https://github.com/weichsel/ZIPFoundation.git"; requirement = { kind = upToNextMajorVersion; minimumVersion = 0.9.19; }; };
-    A000000000000000000011 = { isa = XCSwiftPackageProductDependency; package = A000000000000000000010; productName = ZIPFoundation; };
-  };
-  rootObject = A000000000000000000001;
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* LD10App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* LD10App.swift */; };
+		A10000000000000000000002 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* HomeView.swift */; };
+		A10000000000000000000003 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* Resources */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A20000000000000000000001 /* LD10App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LD10App.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+		A20000000000000000000004 /* LD10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LD10.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A30000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A40000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				A40000000000000000000002 /* LD10 */,
+				A40000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000000000000000000002 /* LD10 */ = {
+			isa = PBXGroup;
+			path = LD10;
+			sourceTree = "<group>";
+			children = (
+				A20000000000000000000001 /* LD10App.swift */,
+				A20000000000000000000002 /* HomeView.swift */,
+				A20000000000000000000003 /* Resources */,
+			);
+		};
+		A40000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+			children = (
+				A20000000000000000000004 /* LD10.app */,
+			);
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A50000000000000000000001 /* LD10 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A70000000000000000000002;
+			buildPhases = (
+				A60000000000000000000001 /* Sources */,
+				A30000000000000000000001 /* Frameworks */,
+				A60000000000000000000002 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = LD10;
+			productName = LD10;
+			productReference = A20000000000000000000004 /* LD10.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A50000000000000000000002 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A50000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A70000000000000000000001;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base);
+			mainGroup = A40000000000000000000001;
+			productRefGroup = A40000000000000000000003;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (A50000000000000000000001,);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A60000000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000003 /* Resources in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A60000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* LD10App.swift in Sources */,
+				A10000000000000000000002 /* HomeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A80000000000000000000001 /* Debug Project */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A80000000000000000000002 /* Release Project */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A80000000000000000000003 /* Debug Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lanchester LD10";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.ld10.ownersguide;
+				PRODUCT_NAME = LD10;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A80000000000000000000004 /* Release Target */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lanchester LD10";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.ld10.ownersguide;
+				PRODUCT_NAME = LD10;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A70000000000000000000001 /* Project configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000000000000000000001 /* Debug Project */,
+				A80000000000000000000002 /* Release Project */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A70000000000000000000002 /* Target configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A80000000000000000000003 /* Debug Target */,
+				A80000000000000000000004 /* Release Target */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A50000000000000000000002 /* Project object */;
 }
