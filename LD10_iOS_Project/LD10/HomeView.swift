@@ -109,7 +109,8 @@ struct HomeView: View {
                     .padding(18)
                 }
             }
-            .navigationBarHidden(true)
+.navigationBarHidden(true)
+.navigationDestination(isPresented: Binding(
     get: { selected != nil },
     set: { if !$0 { selected = nil } }
 )) {
@@ -117,12 +118,6 @@ struct HomeView: View {
         WebsitePage(url: store.page(section.file), title: section.title)
     }
 }
-    }
-}
-                if store.isReady {
-                    WebsitePage(url: store.page(section.file), title: section.title)
-                }
-            }
             .navigationDestination(isPresented: $showOriginalHome) {
                 if store.isReady {
                     WebsitePage(url: store.page("index.htm"), title: "Original LD10 website")
