@@ -193,24 +193,25 @@ productRefGroup = A40000000000000000000003;
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-/* End XCConfigurationList section */
-	/* Begin XCRemoteSwiftPackageReference section */
+/* End XCConfigurationList 
+/* Begin XCRemoteSwiftPackageReference section */
 A90000000000000000000002 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
     isa = XCRemoteSwiftPackageReference;
     repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
     requirement = {
         kind = upToNextMajorVersion;
         minimumVersion = 0.9.19;
-   /* End XCRemoteSwiftPackageReference section */ };
+    };
+};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 A90000000000000000000001 /* ZIPFoundation */ = {
     isa = XCSwiftPackageProductDependency;
     package = A90000000000000000000002 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
     productName = ZIPFoundation;
-/* End XCSwiftPackageProductDependency section */}};
-
 };
-	rootObject = A50000000000000000000002 /* Project object */;
-
-
-
+/* End XCSwiftPackageProductDependency section */
+    };
+    rootObject = A50000000000000000000002 /* Project object */;
+}
