@@ -14,7 +14,8 @@ workflows:
           ls -la
           ls -la LD10_iOS_Project
           test -d LD10_iOS_Project/LD10.xcodeproj
-
+          plutil -lint LD10_iOS_Project/LD10.xcodeproj/project.pbxproj
+          xcodebuild -list -project LD10_iOS_Project/LD10.xcodeproj
       - name: Build LD10 for iOS Simulator
         script: |
           xcodebuild \
