@@ -173,7 +173,6 @@ struct OfflineWebView: UIViewRepresentable {
     let url: URL
     func makeUIView(context: Context) -> WKWebView {
         let view = WKWebView()
-        view.isInspectable = true
         view.scrollView.contentInsetAdjustmentBehavior = .automatic
         view.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent().deletingLastPathComponent())
         return view
