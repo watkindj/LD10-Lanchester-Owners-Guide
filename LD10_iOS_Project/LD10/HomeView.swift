@@ -111,11 +111,7 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
             .navigationDestination(item: $selected) { section in
-                if store.isReady {
-                    WebsitePage(url: store.page(section.file), title: section.title)
-                }
-            }
-.sheet(item: $selected) { section in
+            .sheet(item: $selected) { section in
     NavigationStack {
         WebsitePage(url: store.page(section.file), title: section.title)
     }
