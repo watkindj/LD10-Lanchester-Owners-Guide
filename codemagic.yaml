@@ -51,7 +51,7 @@ workflows:
             -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
             -derivedDataPath build/SimulatorDerivedData \
-                       CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             INFOPLIST_KEY_CFBundleIdentifier=uk.co.ld10.ownersguide \
             build
 
@@ -68,7 +68,7 @@ workflows:
 
           APP_PATH=$(find build/SimulatorDerivedData/Build/Products/Debug-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
 
-                    BUNDLE_ID="uk.co.ld10.ownersguide"
+          BUNDLE_ID="uk.co.ld10.ownersguide"
 
           xcrun simctl boot "$SIMULATOR_UDID" || true
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
