@@ -52,7 +52,7 @@ workflows:
             -configuration Debug \
             -derivedDataPath build/SimulatorDerivedData \
             CODE_SIGNING_ALLOWED=NO \
-                        PRODUCT_BUNDLE_IDENTIFIER=uk.co.ld10.ownersguide \
+            PRODUCT_BUNDLE_IDENTIFIER=uk.co.ld10.ownersguide \
             build
 
       - name: Launch LD10 and capture screenshot
