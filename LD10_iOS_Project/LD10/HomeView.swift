@@ -2,41 +2,111 @@ import SwiftUI
 import WebKit
 import ZIPFoundation
 
+@MainActor
 final class WebsiteStore: ObservableObject {
-    @Published var isReady = false
+    @Published var isReady = true
     @Published var errorMessage: String?
+
     let rootURL: URL
 
-    init() {
-        let support = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        rootURL = support.appendingPathComponent("LD10 Website (working) 21-12-2022", isDirectory: true)
-        prepare()
+    private let packages: [String: String] = [
+        "main": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Main.zip",
+        "bay": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Bay.zip",
+        "controls": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Controls.zip",
+        "restore": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Restore.zip",
+        "trim": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Trim.zip"
+    ]
+
+    private enum StoreError: LocalizedError {
+        case invalidPackageURL
+        case pageNotFound(String)
+
+        var errorDescription: String? {
+            switch self {
+            case .invalidPackageURL:
+                return "The website package address is invalid."
+            case .pageNotFound(let page):
+                return "The website page could not be found: \(page)"
+            }
+        }
     }
 
-    private func prepare() {
-        if FileManager.default.fileExists(atPath: rootURL.appendingPathComponent("index.htm").path) {
-            isReady = true
-            return
-        }
-        guard let archive = Bundle.main.url(forResource: "LD10-Website-Backup", withExtension: "zip", subdirectory: "Resources") else {
-            errorMessage = "The original LD10 website archive is missing from the app."
-            return
-        }
-        do {
-            try FileManager.default.createDirectory(at: rootURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-            try FileManager.default.unzipItem(at: archive, to: rootURL.deletingLastPathComponent())
-            isReady = FileManager.default.fileExists(atPath: rootURL.appendingPathComponent("index.htm").path)
-            if !isReady { errorMessage = "The website was unpacked, but its home page could not be found." }
-        } catch {
-            errorMessage = "Could not unpack the offline website: \(error.localizedDescription)"
-        }
+    init() {
+        let support = FileManager.default.urls(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask
+        )[0]
+
+        rootURL = support.appendingPathComponent(
+            "LD10 Website Packages",
+            isDirectory: true
+        )
     }
 
     func page(_ relative: String) -> URL {
         rootURL.appendingPathComponent(relative)
     }
-}
 
+    func preparePage(_ relative: String) async throws -> URL {
+        try await ensurePackage("main")
+
+        let folder = relative.lowercased()
+
+        if folder.hasPrefix("bay/") {
+            try await ensurePackage("bay")
+        } else if folder.hasPrefix("controls/") {
+            try await ensurePackage("controls")
+        } else if folder.hasPrefix("restore/") {
+            try await ensurePackage("restore")
+        } else if folder.hasPrefix("trim/") {
+            try await ensurePackage("trim")
+        }
+
+        let pageURL = page(relative)
+
+        guard FileManager.default.fileExists(atPath: pageURL.path) else {
+            throw StoreError.pageNotFound(relative)
+        }
+
+        return pageURL
+    }
+
+    private func ensurePackage(_ name: String) async throws {
+        let marker = rootURL.appendingPathComponent(
+            ".ld10-\(name)-installed"
+        )
+
+        if FileManager.default.fileExists(atPath: marker.path) {
+            return
+        }
+
+        guard
+            let address = packages[name],
+            let remoteURL = URL(string: address)
+        else {
+            throw StoreError.invalidPackageURL
+        }
+
+        try FileManager.default.createDirectory(
+            at: rootURL,
+            withIntermediateDirectories: true
+        )
+
+        let (archiveURL, _) = try await URLSession.shared.download(
+            from: remoteURL
+        )
+
+        try FileManager.default.unzipItem(
+            at: archiveURL,
+            to: rootURL
+        )
+
+        FileManager.default.createFile(
+            atPath: marker.path,
+            contents: Data()
+        )
+    }
+}
 struct GuideSection: Identifiable, Hashable {
     let id: String
     let title: String
@@ -112,13 +182,12 @@ struct HomeView: View {
                         .navigationBarHidden(true)
             .sheet(item: $selected) { section in
                 NavigationStack {
-                    WebsitePage(url: store.page(section.file), title: section.title)
+                    WebsitePage(store: store, relativePath: section.file, title: section.title)    }
                 }
             }
             .sheet(isPresented: $showOriginalHome) {
     NavigationStack {
-        WebsitePage(url: store.page("index.htm"), title: "Lanchester LD10")
-    }
+WebsitePage(store: store, relativePath: "index.htm", title: "Lanchester LD10")
 }
         }
     }
@@ -181,25 +250,150 @@ struct HomeView: View {
         }
     }
 }
-
 struct WebsitePage: View {
-    let url: URL
+    @ObservedObject var store: WebsiteStore
+    let relativePath: String
     let title: String
+
+    @State private var pageURL: URL?
+    @State private var errorMessage: String?
+    @State private var isLoading = true
+
     var body: some View {
-        OfflineWebView(url: url)
-            .navigationTitle(title)
-            .navigationBarTitleDisplayMode(.inline)
-            .background(.white)
+        Group {
+            if let pageURL {
+                OfflineWebView(url: pageURL, store: store)
+            } else if let errorMessage {
+                VStack(spacing: 12) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.largeTitle)
+                    Text("Unable to open page")
+                        .font(.headline)
+                    Text(errorMessage)
+                        .font(.footnote)
+                        .multilineTextAlignment(.center)
+                    Button("Try again") {
+                        Task { await loadPage() }
+                    }
+                }
+                .padding()
+            } else if isLoading {
+                VStack(spacing: 12) {
+                    ProgressView()
+                    Text("Preparing website page…")
+                        .font(.subheadline)
+                    Text("The required package will be downloaded if needed.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+            }
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+        .background(.white)
+        .task {
+            await loadPage()
+        }
+    }
+
+    @MainActor
+    private func loadPage() async {
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            pageURL = try await store.preparePage(relativePath)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+
+        isLoading = false
     }
 }
 
 struct OfflineWebView: UIViewRepresentable {
     let url: URL
+    let store: WebsiteStore
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(store: store)
+    }
+
     func makeUIView(context: Context) -> WKWebView {
         let view = WKWebView()
         view.scrollView.contentInsetAdjustmentBehavior = .automatic
-        view.loadFileURL(url, allowingReadAccessTo: url.deletingLastPathComponent().deletingLastPathComponent())
+        view.navigationDelegate = context.coordinator
+
+        context.coordinator.preparedURLs.insert(url.standardizedFileURL.path)
+
+        view.loadFileURL(
+            url,
+            allowingReadAccessTo: store.rootURL
+        )
+
         return view
     }
+
     func updateUIView(_ uiView: WKWebView, context: Context) {}
+
+    final class Coordinator: NSObject, WKNavigationDelegate {
+        let store: WebsiteStore
+        var preparedURLs = Set<String>()
+
+        init(store: WebsiteStore) {
+            self.store = store
+        }
+
+        func webView(
+            _ webView: WKWebView,
+            decidePolicyFor navigationAction: WKNavigationAction,
+            decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+        ) {
+            guard let destination = navigationAction.request.url else {
+                decisionHandler(.allow)
+                return
+            }
+
+            guard destination.isFileURL else {
+                decisionHandler(.allow)
+                return
+            }
+
+            let destinationPath = destination.standardizedFileURL.path
+            let rootPath = store.rootURL.standardizedFileURL.path
+
+            guard destinationPath.hasPrefix(rootPath + "/") else {
+                decisionHandler(.allow)
+                return
+            }
+
+            if preparedURLs.remove(destinationPath) != nil {
+                decisionHandler(.allow)
+                return
+            }
+
+            decisionHandler(.cancel)
+
+            let relativePath = String(
+                destinationPath.dropFirst(rootPath.count + 1)
+            )
+
+            Task { @MainActor in
+                do {
+                    let preparedURL = try await store.preparePage(relativePath)
+
+                    preparedURLs.insert(preparedURL.standardizedFileURL.path)
+
+                    webView.loadFileURL(
+                        preparedURL,
+                        allowingReadAccessTo: store.rootURL
+                    )
+                } catch {
+                    print("LD10 page loading error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
 }
