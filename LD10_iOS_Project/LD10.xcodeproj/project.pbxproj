@@ -24,7 +24,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		A30000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A10000000000000000000004 /* ZIPFoundation in Frameworks */,); runOnlyForDeploymentPostprocessing = 0; };
-        A30000000000000000000005 /* Assets.xcassets in Resources */,
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -110,6 +109,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000000000000000000003 /* Resources in Resources */,
+                A10000000000000000000005 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
