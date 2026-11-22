@@ -1,7 +1,7 @@
 
 workflows:
   ld10-ios-build:
-    name: LD10 iOS build
+    name: LD10 iPhone Release
     instance_type: mac_mini_m2
     max_build_duration: 60
 
@@ -12,20 +12,21 @@ workflows:
       - name: Check project
         script: |
           ls -la
-          ls -la LD10_iOS_Project
           test -d LD10_iOS_Project/LD10.xcodeproj
           plutil -lint LD10_iOS_Project/LD10.xcodeproj/project.pbxproj
           xcodebuild -list -project LD10_iOS_Project/LD10.xcodeproj
-      - name: Build LD10 for iOS Simulator
+
+      - name: Build LD10 for iPhone
         script: |
           xcodebuild \
             -project LD10_iOS_Project/LD10.xcodeproj \
             -scheme LD10 \
-            -sdk iphonesimulator \
-            -configuration Debug \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
             -derivedDataPath build/DerivedData \
             CODE_SIGNING_ALLOWED=NO \
             build
 
     artifacts:
-      - build/DerivedData/Build/Products/Debug-iphonesimulator/*.app
+      - build/DerivedData/Build/Products/Release-iphoneos/*.app
