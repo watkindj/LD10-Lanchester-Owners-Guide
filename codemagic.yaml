@@ -70,6 +70,16 @@ workflows:
 
           BUNDLE_ID="uk.co.ld10.ownersguide"
 
+          if [ ! -f "$APP_PATH/Info.plist" ]; then
+            echo "App Info.plist is missing"
+            exit 1
+          fi
+
+          /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $BUNDLE_ID" "$APP_PATH/Info.plist" || \
+          /usr/libexec/PlistBuddy -c "Add :CFBundleIdentifier string $BUNDLE_ID" "$APP_PATH/Info.plist"
+
+          /usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP_PATH/Info.plist"
+
           xcrun simctl boot "$SIMULATOR_UDID" || true
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
           xcrun simctl install "$SIMULATOR_UDID" "$APP_PATH"
