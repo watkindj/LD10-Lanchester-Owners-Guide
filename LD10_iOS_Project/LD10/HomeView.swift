@@ -132,6 +132,14 @@ struct HomeView: View {
                 .font(.system(size: 34, weight: .bold, design: .serif))
                 .foregroundStyle(Color(red: 0.15, green: 0.22, blue: 0.16))
             Text("Barker & Briggs · Maintenance and information")
+            if let path = Bundle.main.path(forResource: "LD10CarDetail", ofType: "jpeg", inDirectory: "Resources"),
+   let detailImage = UIImage(contentsOfFile: path) {
+    Image(uiImage: detailImage)
+        .resizable()
+        .scaledToFit()
+        .frame(maxWidth: .infinity)
+        .clipShape(RoundedRectangle(cornerRadius: 18))
+}
                 .font(.subheadline).foregroundStyle(.secondary)
             Group {
                 if let path = Bundle.main.path(forResource: "LD10Hero", ofType: "png", inDirectory: "Resources"),
