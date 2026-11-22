@@ -51,7 +51,8 @@ workflows:
             -destination 'generic/platform=iOS Simulator' \
             -configuration Debug \
             -derivedDataPath build/SimulatorDerivedData \
-            CODE_SIGNING_ALLOWED=NO \
+                       CODE_SIGNING_ALLOWED=NO \
+            INFOPLIST_KEY_CFBundleIdentifier=uk.co.ld10.ownersguide \
             build
 
       - name: Launch LD10 and capture screenshot
@@ -67,7 +68,7 @@ workflows:
 
           APP_PATH=$(find build/SimulatorDerivedData/Build/Products/Debug-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
 
-          BUNDLE_ID=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP_PATH/Info.plist")
+                    BUNDLE_ID="uk.co.ld10.ownersguide"
 
           xcrun simctl boot "$SIMULATOR_UDID" || true
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
