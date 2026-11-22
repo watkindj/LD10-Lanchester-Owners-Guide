@@ -121,50 +121,61 @@ struct HomeView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 9) {
             HStack {
-                Text("LD10").font(.system(size: 15, weight: .bold, design: .rounded)).tracking(2)
+                Text("LD10")
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .tracking(2)
+
                 Spacer()
+
                 Text("OWNER'S GUIDE")
-                    .font(.system(size: 10, weight: .bold)).tracking(1.5)
-                    .padding(.horizontal, 10).padding(.vertical, 7)
+                    .font(.system(size: 10, weight: .bold))
+                    .tracking(1.5)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 7)
                     .background(Color(red: 0.88, green: 0.84, blue: 0.73), in: Capsule())
             }
+
             Text("Lanchester LD10")
                 .font(.system(size: 34, weight: .bold, design: .serif))
                 .foregroundStyle(Color(red: 0.15, green: 0.22, blue: 0.16))
-            Text("Barker & Briggs · Maintenance and information")
-    .font(.subheadline)
-    .foregroundStyle(.secondary)
 
-if let path = Bundle.main.path(forResource: "LD10CarDetail", ofType: "jpeg", inDirectory: "Resources"),
-   let detailImage = UIImage(contentsOfFile: path) {
-    Image(uiImage: detailImage)
-        .resizable()
-        .scaledToFit()
-        .frame(maxWidth: .infinity)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
-}
-}
-                .font(.subheadline).foregroundStyle(.secondary)
+            Text("Barker & Briggs · Maintenance and information")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
             Group {
                 if let path = Bundle.main.path(forResource: "LD10Hero", ofType: "png", inDirectory: "Resources"),
                    let uiImage = UIImage(contentsOfFile: path) {
-                    Image(uiImage: uiImage).resizable().scaledToFit()
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
                 } else {
                     Color(red: 0.15, green: 0.22, blue: 0.16)
                 }
             }
-            .frame(maxWidth: .infinity).frame(height: 145)
+            .frame(maxWidth: .infinity)
+            .frame(height: 145)
             .background(Color(red: 0.15, green: 0.22, blue: 0.16), in: RoundedRectangle(cornerRadius: 18))
             .clipShape(RoundedRectangle(cornerRadius: 18))
-                .overlay(alignment: .bottomLeading) {
-                    Text("THE LANCHESTER LD10")
-                        .font(.caption.weight(.bold)).tracking(2)
-                        .foregroundStyle(.white).padding(12)
-                }
+            .overlay(alignment: .bottomLeading) {
+                Text("THE LANCHESTER LD10")
+                    .font(.caption.weight(.bold))
+                    .tracking(2)
+                    .foregroundStyle(.white)
+                    .padding(12)
+            }
+
+            if let path = Bundle.main.path(forResource: "LD10CarDetail", ofType: "jpeg", inDirectory: "Resources"),
+               let detailImage = UIImage(contentsOfFile: path) {
+                Image(uiImage: detailImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
+                    .clipShape(RoundedRectangle(cornerRadius: 18))
+            }
         }
     }
 }
-
 struct WebsitePage: View {
     let url: URL
     let title: String
