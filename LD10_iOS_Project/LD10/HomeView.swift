@@ -115,6 +115,11 @@ struct HomeView: View {
                     WebsitePage(url: store.page(section.file), title: section.title)
                 }
             }
+            .sheet(isPresented: $showOriginalHome) {
+    NavigationStack {
+        WebsitePage(url: store.page("index.htm"), title: "Lanchester LD10")
+    }
+}
         }
     }
 
