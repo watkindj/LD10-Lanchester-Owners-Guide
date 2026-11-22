@@ -30,3 +30,29 @@ workflows:
 
     artifacts:
       - build/DerivedData/Build/Products/Release-iphoneos/*.app
+
+      
+  ld10-ios-simulator-preview:
+    name: LD10 Simulator Preview
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+
+    environment:
+      xcode: latest
+
+    scripts:
+      - name: Build for iPhone Simulator
+        script: |
+          xcodebuild \
+            -project LD10_iOS_Project/LD10.xcodeproj \
+            -scheme LD10 \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug \
+            -derivedDataPath build/SimulatorDerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+    artifacts:
+      - build/SimulatorDerivedData/Build/Products/Debug-iphonesimulator/*.app
+
