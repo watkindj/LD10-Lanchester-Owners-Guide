@@ -178,17 +178,25 @@ struct HomeView: View {
                     }
                     .padding(18)
                 }
-            }
-                        .navigationBarHidden(true)
+            }            .navigationBarHidden(true)
             .sheet(item: $selected) { section in
                 NavigationStack {
-                    WebsitePage(store: store, relativePath: section.file, title: section.title)    }
+                    WebsitePage(
+                        store: store,
+                        relativePath: section.file,
+                        title: section.title
+                    )
                 }
             }
             .sheet(isPresented: $showOriginalHome) {
-    NavigationStack {
-WebsitePage(store: store, relativePath: "index.htm", title: "Lanchester LD10")
-}
+                NavigationStack {
+                    WebsitePage(
+                        store: store,
+                        relativePath: "index.htm",
+                        title: "Lanchester LD10"
+                    )
+                }
+            }
         }
     }
 
