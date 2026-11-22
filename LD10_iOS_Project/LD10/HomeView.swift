@@ -109,16 +109,16 @@ struct HomeView: View {
                     .padding(18)
                 }
             }
-            .navigationBarHidden(true)
-            .navigationDestination(item: $selected) { section in
+                        .navigationBarHidden(true)
             .sheet(item: $selected) { section in
-    NavigationStack {
-        WebsitePage(url: store.page(section.file), title: section.title)
-    }
-}
+                NavigationStack {
+                    WebsitePage(url: store.page(section.file), title: section.title)
+                }
+            }
         }
     }
 
+    private var header: some View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 9) {
             HStack {
