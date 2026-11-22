@@ -176,6 +176,7 @@ struct HomeView: View {
         }
     }
 }
+
 struct WebsitePage: View {
     let url: URL
     let title: String
