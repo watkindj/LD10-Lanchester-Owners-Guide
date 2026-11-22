@@ -120,8 +120,6 @@ struct HomeView: View {
         WebsitePage(url: store.page(section.file), title: section.title)
     }
 }
-                }
-            }
         }
     }
 
