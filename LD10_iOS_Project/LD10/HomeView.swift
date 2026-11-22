@@ -115,9 +115,11 @@ struct HomeView: View {
                     WebsitePage(url: store.page(section.file), title: section.title)
                 }
             }
-            .navigationDestination(isPresented: $showOriginalHome) {
-                if store.isReady {
-                    WebsitePage(url: store.page("index.htm"), title: "Original LD10 website")
+.sheet(item: $selected) { section in
+    NavigationStack {
+        WebsitePage(url: store.page(section.file), title: section.title)
+    }
+}
                 }
             }
         }
