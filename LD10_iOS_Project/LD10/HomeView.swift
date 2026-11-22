@@ -119,7 +119,6 @@ struct HomeView: View {
     }
 
     private var header: some View {
-    private var header: some View {
         VStack(alignment: .leading, spacing: 9) {
             HStack {
                 Text("LD10").font(.system(size: 15, weight: .bold, design: .rounded)).tracking(2)
