@@ -68,6 +68,8 @@ workflows:
           fi
 
           APP_PATH=$(find build/SimulatorDerivedData/Build/Products/Debug-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)
+          APP_PATH="$(cd "$(dirname "$APP_PATH")" && pwd)/$(basename "$APP_PATH")"
+          echo "APP PATH: $APP_PATH"
 
           BUNDLE_ID="uk.co.ld10.ownersguide"
 
