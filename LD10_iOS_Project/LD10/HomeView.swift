@@ -133,7 +133,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(red: 0.95, green: 0.94, blue: 0.90).ignoresSafeArea()
+                Color(red: 0.07, green: 0.22, blue: 0.13).ignoresSafeArea()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         header
@@ -145,35 +145,75 @@ struct HomeView: View {
                         } else {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                                 ForEach(sections) { section in
-                                    Button { selected = section } label: {
-                                        VStack(alignment: .leading, spacing: 10) {
-                                            Image(systemName: section.symbol)
-                                                .font(.system(size: 25, weight: .medium))
-                                                .foregroundStyle(Color(red: 0.78, green: 0.63, blue: 0.34))
-                                            Text(section.title)
-                                                .font(.headline).foregroundStyle(Color(red: 0.15, green: 0.22, blue: 0.16))
-                                            Text(section.subtitle)
-                                                .font(.caption).foregroundStyle(.secondary)
-                                                .multilineTextAlignment(.leading)
-                                            Spacer(minLength: 0)
-                                        }
-                                        .frame(maxWidth: .infinity, minHeight: 118, alignment: .leading)
-                                        .padding(15)
-                                        .background(.white, in: RoundedRectangle(cornerRadius: 17))
-                                    }
-                                    .buttonStyle(.plain)
+
+Button {
+    selected = section
+} label: {
+    HStack(spacing: 12) {
+        Image(systemName: section.symbol)
+            .font(.system(size: 27, weight: .medium))
+            .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+
+        VStack(alignment: .leading, spacing: 7) {
+            Text(section.title)
+                .font(.system(size: 16, weight: .bold, design: .serif))
+                .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+
+            Text(section.subtitle)
+                .font(.system(size: 11, design: .serif))
+                .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+                .lineLimit(2)
+        }
+
+        Spacer(minLength: 0)
+
+        Image(systemName: "chevron.right")
+            .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+    }
+    .frame(maxWidth: .infinity, minHeight: 115)
+    .padding(12)
+    .background(
+        Color(red: 0.09, green: 0.27, blue: 0.17),
+        in: RoundedRectangle(cornerRadius: 18)
+    )
+    .overlay {
+        RoundedRectangle(cornerRadius: 18)
+            .stroke(
+                Color(red: 0.91, green: 0.82, blue: 0.59),
+                lineWidth: 2
+            )
+    }
+}
+.buttonStyle(.plain)
+
                                 }
                             }
-                            Button { showOriginalHome = true } label: {
-                                Label("Open complete original website", systemImage: "globe")
-                                    .font(.subheadline.weight(.semibold))
-                                    .frame(maxWidth: .infinity).padding()
-                                    .background(Color(red: 0.15, green: 0.22, blue: 0.16), in: RoundedRectangle(cornerRadius: 14))
-                                    .foregroundStyle(.white)
-                            }
-                            Text("The original website pages, photographs and PDF documents are stored in this app for offline browsing.")
-                                .font(.footnote).foregroundStyle(.secondary)
-                                .padding(.horizontal, 3)
+Button { showOriginalHome = true } label: {
+                                
+Label("Open complete original website", systemImage: "globe")
+    .font(.system(size: 16, weight: .semibold, design: .serif))
+    .frame(maxWidth: .infinity)
+    .padding()
+    .background(
+        Color(red: 0.09, green: 0.27, blue: 0.17),
+        in: RoundedRectangle(cornerRadius: 16)
+    )
+    .overlay {
+        RoundedRectangle(cornerRadius: 16)
+            .stroke(
+                Color(red: 0.91, green: 0.82, blue: 0.59),
+                lineWidth: 2
+            )
+    }
+    .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+}
+.buttonStyle(.plain)
+
+Text("The original website pages, photographs and PDF documents are stored in this app for offline browsing.")
+    .font(.footnote)
+    .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+    .padding(.horizontal, 3)
+
                         }
                     }
                     .padding(18)
@@ -200,64 +240,66 @@ struct HomeView: View {
         }
     }
 
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 9) {
-            HStack {
-                Text("LD10")
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .tracking(2)
 
-                Spacer()
+private var header: some View {
+    VStack(spacing: 15) {
 
-                Text("OWNER'S GUIDE")
-                    .font(.system(size: 10, weight: .bold))
-                    .tracking(1.5)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 7)
-                    .background(Color(red: 0.88, green: 0.84, blue: 0.73), in: Capsule())
-            }
-
-            Text("Lanchester LD10")
-                .font(.system(size: 34, weight: .bold, design: .serif))
-                .foregroundStyle(Color(red: 0.15, green: 0.22, blue: 0.16))
-
-            Text("Barker & Briggs · Maintenance and information")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-
-            Group {
-                if let path = Bundle.main.path(forResource: "LD10Hero", ofType: "png", inDirectory: "LD10Media"),
-                   let uiImage = UIImage(contentsOfFile: path) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFit()
-                } else {
-                    Color(red: 0.15, green: 0.22, blue: 0.16)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 145)
-            .background(Color(red: 0.15, green: 0.22, blue: 0.16), in: RoundedRectangle(cornerRadius: 18))
-            .clipShape(RoundedRectangle(cornerRadius: 18))
-            .overlay(alignment: .bottomLeading) {
-                Text("THE LANCHESTER LD10")
-                    .font(.caption.weight(.bold))
-                    .tracking(2)
-                    .foregroundStyle(.white)
-                    .padding(12)
-            }
-
-            if let path = Bundle.main.path(forResource: "LD10CarDetail", ofType: "jpeg", inDirectory: "LD10Media"),
-               let detailImage = UIImage(contentsOfFile: path) {
-                Image(uiImage: detailImage)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: .infinity)
-                    .clipShape(RoundedRectangle(cornerRadius: 18))
-            }
+        if let path = Bundle.main.path(
+            forResource: "LD10Logo_Cream",
+            ofType: "png",
+            inDirectory: "LD10Media"
+        ), let logo = UIImage(contentsOfFile: path) {
+            Image(uiImage: logo)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 65)
+        } else {
+            Text("LANCHESTER")
+                .font(.system(size: 30, weight: .medium, design: .serif))
+                .tracking(5)
+                .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
         }
+
+        Text("LD10")
+            .font(.system(size: 65, weight: .bold, design: .serif))
+            .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+
+        if let path = Bundle.main.path(
+            forResource: "LD10Hero",
+            ofType: "png",
+            inDirectory: "LD10Media"
+        ), let car = UIImage(contentsOfFile: path) {
+            Image(uiImage: car)
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity)
+                .frame(height: 245)
+                .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(
+                            Color(red: 0.91, green: 0.84, blue: 0.65),
+                            lineWidth: 3
+                        )
+                }
+        }
+
+        Text("History  ·  Engineering  ·  Preservation")
+            .font(.system(size: 17, weight: .semibold, design: .serif))
+            .italic()
+            .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+            .multilineTextAlignment(.center)
     }
+    .padding(16)
+    .frame(maxWidth: .infinity)
+    .background(
+        Color(red: 0.07, green: 0.22, blue: 0.13),
+        in: RoundedRectangle(cornerRadius: 22)
+    )
 }
+}
+
 struct WebsitePage: View {
     @ObservedObject var store: WebsiteStore
     let relativePath: String
