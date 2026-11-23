@@ -154,7 +154,7 @@ Button {
             .font(.system(size: 27, weight: .medium))
             .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
 
-        VStack(alignment: .leading, spacing: 7) {
+VStack(alignment: .leading, spacing: 7) {
             Text(section.title)
                 .font(.system(size: 16, weight: .bold, design: .serif))
                 .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
@@ -163,7 +163,7 @@ Button {
                 .font(.system(size: 11, design: .serif))
                 .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
                 .lineLimit(2)
-        }
+        }.layoutPriority(1)
 
         Spacer(minLength: 0)
 
