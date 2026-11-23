@@ -226,7 +226,7 @@ struct HomeView: View {
                 .foregroundStyle(.secondary)
 
             Group {
-                if let path = Bundle.main.path(forResource: "LD10Hero", ofType: "png", inDirectory: "Resources"),
+                if let path = Bundle.main.path(forResource: "LD10Hero", ofType: "png", inDirectory: "LD10Media"),
                    let uiImage = UIImage(contentsOfFile: path) {
                     Image(uiImage: uiImage)
                         .resizable()
@@ -247,7 +247,7 @@ struct HomeView: View {
                     .padding(12)
             }
 
-            if let path = Bundle.main.path(forResource: "LD10CarDetail", ofType: "jpeg", inDirectory: "Resources"),
+            if let path = Bundle.main.path(forResource: "LD10CarDetail", ofType: "jpeg", inDirectory: "LD10Media"),
                let detailImage = UIImage(contentsOfFile: path) {
                 Image(uiImage: detailImage)
                     .resizable()
