@@ -18,7 +18,7 @@
 		A20000000000000000000001 /* LD10App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LD10App.swift; sourceTree = "<group>"; };
 		A20000000000000000000002 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A20000000000000000000005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-        A20000000000000000000003 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
+        A20000000000000000000003 /* LD10Media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LD10Media; sourceTree = "<group>"; };
 		A20000000000000000000004 /* LD10.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LD10.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
