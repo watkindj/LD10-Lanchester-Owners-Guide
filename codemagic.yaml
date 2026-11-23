@@ -55,6 +55,7 @@ workflows:
             PRODUCT_BUNDLE_IDENTIFIER=uk.co.ld10.ownersguide \
             build
 
+
       - name: Launch LD10 and capture screenshot
         script: |
           set -e
@@ -78,7 +79,8 @@ workflows:
           /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier $BUNDLE_ID" "$APP_PATH/Info.plist" || \
           /usr/libexec/PlistBuddy -c "Add :CFBundleIdentifier string $BUNDLE_ID" "$APP_PATH/Info.plist"
 
-          /usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP_PATH/Info.plist"
+          echo "CHECKING APP INFO.PLIST"
+          plutil -p "$APP_PATH/Info.plist"
 
           xcrun simctl boot "$SIMULATOR_UDID" || true
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
@@ -88,9 +90,8 @@ workflows:
           sleep 45
 
           mkdir -p build/Preview
-          echo "CHECKING APP INFO.PLIST"
-plutil -p "$APP_PATH/Info.plist"
           xcrun simctl io "$SIMULATOR_UDID" screenshot build/Preview/LD10-Preview.png
+
 
     artifacts:
       - build/SimulatorDerivedData/Build/Products/Debug-iphonesimulator/*.app
