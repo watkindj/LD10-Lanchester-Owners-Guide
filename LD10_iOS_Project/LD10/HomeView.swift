@@ -146,32 +146,38 @@ struct HomeView: View {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                                 ForEach(sections) { section in
 
+
 Button {
     selected = section
 } label: {
-    HStack(spacing: 12) {
+    HStack(spacing: 8) {
         Image(systemName: section.symbol)
-            .font(.system(size: 27, weight: .medium))
+            .font(.system(size: 22, weight: .medium))
             .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+            .frame(width: 28)
 
-VStack(alignment: .leading, spacing: 7) {
+        VStack(alignment: .leading, spacing: 7) {
             Text(section.title)
-                .font(.system(size: 16, weight: .bold, design: .serif))
+                .font(.system(size: 15, weight: .bold, design: .serif))
                 .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+                .lineLimit(2)
+                .minimumScaleFactor(0.7)
 
             Text(section.subtitle)
-                .font(.system(size: 11, design: .serif))
+                .font(.system(size: 10, design: .serif))
                 .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
                 .lineLimit(2)
-        }.layoutPriority(1)
-
-        Spacer(minLength: 0)
+                .minimumScaleFactor(0.8)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .layoutPriority(1)
 
         Image(systemName: "chevron.right")
+            .font(.system(size: 13, weight: .medium))
             .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
     }
     .frame(maxWidth: .infinity, minHeight: 115)
-    .padding(12)
+    .padding(10)
     .background(
         Color(red: 0.09, green: 0.27, blue: 0.17),
         in: RoundedRectangle(cornerRadius: 18)
@@ -185,7 +191,6 @@ VStack(alignment: .leading, spacing: 7) {
     }
 }
 .buttonStyle(.plain)
-
                                 }
                             }
 Button { showOriginalHome = true } label: {
