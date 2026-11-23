@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A10000000000000000000001 /* LD10App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* LD10App.swift */; };
 		A10000000000000000000002 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* HomeView.swift */; };
-		A10000000000000000000003 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* Resources */; };
+		A10000000000000000000003 /* LD10Media in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* LD10Media */; };
         A10000000000000000000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* Assets.xcassets */; };
         A10000000000000000000004 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A90000000000000000000001 /* ZIPFoundation */; };
 /* End PBXBuildFile section */
@@ -42,7 +42,7 @@
 			children = (
 				A20000000000000000000001 /* LD10App.swift */,
 				A20000000000000000000002 /* HomeView.swift */,
-				A20000000000000000000003 /* Resources */,
+				A20000000000000000000003 /* LD10Media */,
                 A20000000000000000000005 /* Assets.xcassets */,
 			);
 		};
@@ -108,7 +108,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10000000000000000000003 /* Resources in Resources */,
+				A10000000000000000000003 /* LD10Media in Resources */,
                 A10000000000000000000005 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
