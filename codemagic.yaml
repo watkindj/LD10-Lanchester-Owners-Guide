@@ -88,6 +88,8 @@ workflows:
           sleep 45
 
           mkdir -p build/Preview
+          echo "CHECKING APP INFO.PLIST"
+plutil -p "$APP_PATH/Info.plist"
           xcrun simctl io "$SIMULATOR_UDID" screenshot build/Preview/LD10-Preview.png
 
     artifacts:
