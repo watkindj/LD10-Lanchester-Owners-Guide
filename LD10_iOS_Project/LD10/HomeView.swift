@@ -138,6 +138,7 @@ private func ensurePackage(_ name: String) async throws {
         contents: Data()
     )
 }
+}
 
 struct GuideSection: Identifiable, Hashable {
     let id: String
