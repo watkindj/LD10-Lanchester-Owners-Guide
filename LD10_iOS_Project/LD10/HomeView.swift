@@ -86,42 +86,59 @@ private let packages: [String: String] = [
         return pageURL
     }
 
-    private func ensurePackage(_ name: String) async throws {
-        let marker = rootURL.appendingPathComponent(
-            ".ld10-\(name)-installed"
-        )
 
-        if FileManager.default.fileExists(atPath: marker.path) {
-            return
-        }
+private func ensurePackage(_ name: String) async throws {
+    let marker = rootURL.appendingPathComponent(
+        ".ld10-\(name)-installed"
+    )
 
-        guard
-            let address = packages[name],
-            let remoteURL = URL(string: address)
-        else {
-            throw StoreError.invalidPackageURL
-        }
-
-        try FileManager.default.createDirectory(
-            at: rootURL,
-            withIntermediateDirectories: true
-        )
-
-        let (archiveURL, _) = try await URLSession.shared.download(
-            from: remoteURL
-        )
-
-        try FileManager.default.unzipItem(
-            at: archiveURL,
-            to: rootURL
-        )
-
-        FileManager.default.createFile(
-            atPath: marker.path,
-            contents: Data()
-        )
+    if FileManager.default.fileExists(atPath: marker.path) {
+        return
     }
+
+    guard
+        let address = packages[name],
+        let remoteURL = URL(string: address)
+    else {
+        throw StoreError.invalidPackageURL
+    }
+
+    try FileManager.default.createDirectory(
+        at: rootURL,
+        withIntermediateDirectories: true
+    )
+
+    let destinationURL: URL
+
+    if name.hasPrefix("photos") {
+        destinationURL = rootURL.appendingPathComponent(
+            "photos",
+            isDirectory: true
+        )
+    } else {
+        destinationURL = rootURL
+    }
+
+    try FileManager.default.createDirectory(
+        at: destinationURL,
+        withIntermediateDirectories: true
+    )
+
+    let (archiveURL, _) = try await URLSession.shared.download(
+        from: remoteURL
+    )
+
+    try FileManager.default.unzipItem(
+        at: archiveURL,
+        to: destinationURL
+    )
+
+    FileManager.default.createFile(
+        atPath: marker.path,
+        contents: Data()
+    )
 }
+
 struct GuideSection: Identifiable, Hashable {
     let id: String
     let title: String
