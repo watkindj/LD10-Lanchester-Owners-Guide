@@ -67,7 +67,15 @@ private let packages: [String: String] = [
             try await ensurePackage("restore")
         } else if folder.hasPrefix("trim/") {
             try await ensurePackage("trim")
-        }
+        } else if folder.hasPrefix("photos/") {
+            try await ensurePackage("photos01")
+            try await ensurePackage("photos02")
+            try await ensurePackage("photos03")
+            try await ensurePackage("photos04")
+            try await ensurePackage("photos05")
+            try await ensurePackage("photos06")
+            try await ensurePackage("photos07")
+}
 
         let pageURL = page(relative)
 
