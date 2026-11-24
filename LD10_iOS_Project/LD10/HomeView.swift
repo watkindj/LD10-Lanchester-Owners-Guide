@@ -75,7 +75,7 @@ private let packages: [String: String] = [
             try await ensurePackage("photos05")
             try await ensurePackage("photos06")
             try await ensurePackage("photos07")
-}
+        }
 
         let pageURL = page(relative)
 
