@@ -275,6 +275,8 @@ Text("The original website pages, photographs and PDF documents are stored in th
                         }
                     }
                     .padding(18)
+                    .frame(maxWidth: 850)
+                    .frame(maxWidth: .infinity)
                 }
             }            .navigationBarHidden(true)
             .sheet(item: $selected) { section in
@@ -328,13 +330,17 @@ private var header: some View {
             inDirectory: "LD10Media"
         ), let car = UIImage(contentsOfFile: path) {
             Image(uiImage: car)
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: .infinity)
-                .frame(height: 245)
-                .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .overlay {
+    .resizable()
+    .scaledToFit()
+    .frame(maxWidth: 650)
+    .clipShape(RoundedRectangle(cornerRadius: 15))
+    .overlay {
+        RoundedRectangle(cornerRadius: 15)
+            .stroke(
+                Color(red: 0.91, green: 0.84, blue: 0.65),
+                lineWidth: 3
+            )
+    }
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(
                             Color(red: 0.91, green: 0.84, blue: 0.65),
