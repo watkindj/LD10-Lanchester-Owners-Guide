@@ -38,7 +38,7 @@ final class WebsiteStore: ObservableObject {
         )[0]
 
         rootURL = support.appendingPathComponent(
-            "LD10 Website Packages",
+            "LD10 Website Packages v2",
             isDirectory: true
         )
     }
