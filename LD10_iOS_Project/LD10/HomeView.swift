@@ -45,7 +45,7 @@ private let packages: [String: String] = [
         )[0]
 
         rootURL = support.appendingPathComponent(
-            "LD10 Website Packages v3",
+            "LD10 Website Packages v4",
             isDirectory: true
         )
     }
@@ -127,6 +127,7 @@ private func ensurePackage(_ name: String) async throws {
     let (archiveURL, _) = try await URLSession.shared.download(
         from: remoteURL
     )
+}
 
     try FileManager.default.unzipItem(
         at: archiveURL,
