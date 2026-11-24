@@ -45,7 +45,7 @@ private let packages: [String: String] = [
         )[0]
 
         rootURL = support.appendingPathComponent(
-            "LD10 Website Packages v4",
+            "LD10 Website Packages v5",
             isDirectory: true
         )
     }
