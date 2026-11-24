@@ -92,9 +92,29 @@ private func ensurePackage(_ name: String) async throws {
         ".ld10-\(name)-installed"
     )
 
-    if FileManager.default.fileExists(atPath: marker.path) {
+if FileManager.default.fileExists(atPath: marker.path) {
+    let expectedFilesExist: Bool
+
+    switch name {
+    case "trim":
+        expectedFilesExist = FileManager.default.fileExists(
+            atPath: rootURL.appendingPathComponent("trim/ntrim.htm").path
+        )
+    case "photos01", "photos02", "photos03", "photos04",
+         "photos05", "photos06", "photos07":
+        expectedFilesExist = FileManager.default.fileExists(
+            atPath: rootURL.appendingPathComponent("photos").path
+        )
+    default:
+        expectedFilesExist = true
+    }
+
+    if expectedFilesExist {
         return
     }
+
+    try FileManager.default.removeItem(at: marker)
+}
 
     guard
         let address = packages[name],
