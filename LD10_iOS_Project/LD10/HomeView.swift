@@ -110,7 +110,7 @@ private func ensurePackage(_ name: String) async throws {
 
     let destinationURL: URL
 
-if name == "trim" || name.hasPrefix("photos") {
+if name.hasPrefix("photos") {
         destinationURL = rootURL.appendingPathComponent(
             "photos",
             isDirectory: true
