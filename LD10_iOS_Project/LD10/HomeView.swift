@@ -328,26 +328,20 @@ private var header: some View {
             forResource: "LD10Hero",
             ofType: "png",
             inDirectory: "LD10Media"
-        ), let car = UIImage(contentsOfFile: path) {
+), let car = UIImage(contentsOfFile: path) {
             Image(uiImage: car)
-    .resizable()
-    .scaledToFit()
-    .frame(maxWidth: 650)
-    .clipShape(RoundedRectangle(cornerRadius: 15))
-    .overlay {
-        RoundedRectangle(cornerRadius: 15)
-            .stroke(
-                Color(red: 0.91, green: 0.84, blue: 0.65),
-                lineWidth: 3
-            )
-    }
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(
-                            Color(red: 0.91, green: 0.84, blue: 0.65),
-                            lineWidth: 3
-                        )
-                }
+                 .resizable()
+                 .scaledToFit()
+                 .frame(maxWidth: 650)
+                 .clipShape(RoundedRectangle(cornerRadius: 15))
+                 .overlay {
+                     RoundedRectangle(cornerRadius: 15)
+                         .stroke(
+                             Color(red: 0.91, green: 0.84, blue: 0.65),
+                             lineWidth: 3
+                )
         }
+}
 
         Text("History  ·  Engineering  ·  Preservation")
             .font(.system(size: 17, weight: .semibold, design: .serif))
