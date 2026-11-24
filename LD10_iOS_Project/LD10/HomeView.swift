@@ -9,14 +9,21 @@ final class WebsiteStore: ObservableObject {
 
     let rootURL: URL
 
-    private let packages: [String: String] = [
-        "main": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Main.zip",
-        "bay": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Bay.zip",
-        "controls": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Controls.zip",
-        "restore": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Restore.zip",
-        "trim": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Trim.zip"
-    ]
 
+private let packages: [String: String] = [
+    "main": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Main.zip",
+    "bay": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Bay.zip",
+    "controls": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Controls.zip",
+    "restore": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Restore.zip",
+    "trim": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/LD10-Trim.zip",
+    "photos01": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-01.zip",
+    "photos02": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-02.zip",
+    "photos03": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-03.zip",
+    "photos04": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-04.zip",
+    "photos05": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-05.zip",
+    "photos06": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-06.zip",
+    "photos07": "https://raw.githubusercontent.com/watkindj/LD10-Lanchester-Owners-Guide/refs/heads/main/WebsitePackages/Photos-07.zip"
+]
     private enum StoreError: LocalizedError {
         case invalidPackageURL
         case pageNotFound(String)
