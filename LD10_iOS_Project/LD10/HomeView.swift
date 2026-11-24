@@ -275,7 +275,8 @@ Text("The original website pages, photographs and PDF documents are stored in th
                         }
                     }
                     .padding(18)
-                    .frame(maxWidth: 850)
+                    .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 920 : 850
+)
                     .frame(maxWidth: .infinity)
                 }
             }            .navigationBarHidden(true)
