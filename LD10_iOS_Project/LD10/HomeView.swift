@@ -175,10 +175,10 @@ struct HomeView: View {
 
     private let sections = [
         GuideSection(id: "maintenance", title: "Maintenance", subtitle: "Workshop information and guidance", symbol: "wrench.and.screwdriver", file: "index_5.htm"),
-        GuideSection(id: "controls", title: "Technical information", subtitle: "Systems, components and details", symbol: "gearshape.2", file: "index_6.htm"),
-        GuideSection(id: "trim", title: "Body & trim", subtitle: "Interior and exterior trim", symbol: "car.side", file: "trim/ntrim.htm"),
+        GuideSection(id: "controls", title: "Technical Information", subtitle: "Systems, components and details", symbol: "gearshape.2", file: "index_6.htm"),
+        GuideSection(id: "trim", title: "Interior & Exterior", subtitle: "Upholstery, Trim, Body & Chromework", symbol: "car.side", file: "trim/ntrim.htm"),
         GuideSection(id: "spares", title: "Spares", subtitle: "Parts and spares information", symbol: "shippingbox", file: "docs/spares.htm"),
-        GuideSection(id: "cars", title: "Owners' cars", subtitle: "Cars and owner information", symbol: "car.2", file: "docs/cars.htm"),
+        GuideSection(id: "cars", title: "Owners' Cars", subtitle: "Cars and owner information", symbol: "car.2", file: "docs/cars.htm"),
         GuideSection(id: "photos", title: "Photographs", subtitle: "Original photo collection", symbol: "photo.on.rectangle.angled", file: "photos/photos.htm"),
         GuideSection(id: "contact", title: "Contact", subtitle: "Original site contact details", symbol: "envelope", file: "docs/contact.htm")
     ]
@@ -371,7 +371,8 @@ private var header: some View {
         }
 
         Text("Briggs and Barker Owner's Guide")
-            .font(.system(size: 15, weight: .bold, design: .serif))
+            .font(.system(size: 17, weight: .semibold, design: .serif))
+            .italic()
             .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
             .multilineTextAlignment(.center)
 
