@@ -194,6 +194,9 @@ var body: some View {
             ZStack {
                 Color(red: 0.07, green: 0.22, blue: 0.13)
                     .ignoresSafeArea()
+                Text("Available width: \(Int(geometry.size.width)) pt")
+                    .foregroundStyle(.yellow)
+                    .font(.caption)
 
                 ScrollView {
                     Group {
