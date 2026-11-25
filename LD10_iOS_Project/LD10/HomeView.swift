@@ -407,7 +407,7 @@ private var header: some View {
         in: RoundedRectangle(cornerRadius: 22)
     )
 }
-
+}
 struct WebsitePage: View {
     @ObservedObject var store: WebsiteStore
     let relativePath: String
