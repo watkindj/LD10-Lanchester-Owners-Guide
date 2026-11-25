@@ -339,6 +339,7 @@ private var navigationPanel: some View {
     }
 }
 
+
 private var header: some View {
     VStack(spacing: 15) {
 
@@ -358,28 +359,40 @@ private var header: some View {
                 .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
         }
 
-        Text("LD10")
-            .font(.system(size: 65, weight: .bold, design: .serif))
+        if let path = Bundle.main.path(
+            forResource: "LD10Script_Cream",
+            ofType: "png",
+            inDirectory: "LD10Media"
+        ), let script = UIImage(contentsOfFile: path) {
+            Image(uiImage: script)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 65)
+        }
+
+        Text("Briggs and Barker Owner's Guide")
+            .font(.system(size: 15, weight: .bold, design: .serif))
             .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+            .multilineTextAlignment(.center)
 
         if let path = Bundle.main.path(
             forResource: "LD10Hero",
             ofType: "png",
             inDirectory: "LD10Media"
-), let car = UIImage(contentsOfFile: path) {
+        ), let car = UIImage(contentsOfFile: path) {
             Image(uiImage: car)
-                 .resizable()
-                 .scaledToFit()
-                 .frame(maxWidth: 650)
-                 .clipShape(RoundedRectangle(cornerRadius: 15))
-                 .overlay {
-                     RoundedRectangle(cornerRadius: 15)
-                         .stroke(
-                             Color(red: 0.91, green: 0.84, blue: 0.65),
-                             lineWidth: 3
-                )
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: 650)
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(
+                            Color(red: 0.91, green: 0.84, blue: 0.65),
+                            lineWidth: 3
+                        )
+                }
         }
-}
 
         Text("History  ·  Engineering  ·  Preservation")
             .font(.system(size: 17, weight: .semibold, design: .serif))
@@ -393,7 +406,6 @@ private var header: some View {
         Color(red: 0.07, green: 0.22, blue: 0.13),
         in: RoundedRectangle(cornerRadius: 22)
     )
-}
 }
 
 struct WebsitePage: View {
