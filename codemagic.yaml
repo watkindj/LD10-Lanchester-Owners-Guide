@@ -39,7 +39,7 @@ workflows:
     max_build_duration: 60
 
     environment:
-      xcode: latest
+      xcode: 27.2
 
     scripts:
       - name: Build for iPhone Simulator
