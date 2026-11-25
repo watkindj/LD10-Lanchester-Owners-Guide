@@ -351,7 +351,7 @@ private var header: some View {
             Image(uiImage: logo)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 65)
+                .frame(height: 50)
         } else {
             Text("LANCHESTER")
                 .font(.system(size: 30, weight: .medium, design: .serif))
