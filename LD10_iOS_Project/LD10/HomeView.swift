@@ -302,6 +302,102 @@ Text("The original website pages, photographs and PDF documents are stored in th
     }
 
 
+private var navigationPanel: some View {
+    VStack(alignment: .leading, spacing: 20) {
+        if let error = store.errorMessage {
+            Text(error)
+                .foregroundStyle(.red)
+                .padding()
+        } else if !store.isReady {
+            ProgressView("Preparing the offline guide…")
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 30)
+        } else {
+            LazyVGrid(
+                columns: [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ],
+                spacing: 12
+            ) {
+                ForEach(sections) { section in
+                    Button {
+                        selected = section
+                    } label: {
+                        HStack(spacing: 8) {
+                            Image(systemName: section.symbol)
+                                .font(.system(size: 22, weight: .medium))
+                                .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+                                .frame(width: 28)
+
+                            VStack(alignment: .leading, spacing: 7) {
+                                Text(section.title)
+                                    .font(.system(size: 15, weight: .bold, design: .serif))
+                                    .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.7)
+
+                                Text(section.subtitle)
+                                    .font(.system(size: 10, design: .serif))
+                                    .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.8)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .layoutPriority(1)
+
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundStyle(Color(red: 0.91, green: 0.82, blue: 0.59))
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 115)
+                        .padding(10)
+                        .background(
+                            Color(red: 0.09, green: 0.27, blue: 0.17),
+                            in: RoundedRectangle(cornerRadius: 18)
+                        )
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 18)
+                                .stroke(
+                                    Color(red: 0.91, green: 0.82, blue: 0.59),
+                                    lineWidth: 2
+                                )
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
+            Button {
+                showOriginalHome = true
+            } label: {
+                Label("Open complete original website", systemImage: "globe")
+                    .font(.system(size: 16, weight: .semibold, design: .serif))
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(
+                        Color(red: 0.09, green: 0.27, blue: 0.17),
+                        in: RoundedRectangle(cornerRadius: 16)
+                    )
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(
+                                Color(red: 0.91, green: 0.82, blue: 0.59),
+                                lineWidth: 2
+                            )
+                    }
+                    .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+            }
+            .buttonStyle(.plain)
+
+            Text("The original website pages, photographs and PDF documents are stored in this app for offline browsing.")
+                .font(.footnote)
+                .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
+                .padding(.horizontal, 3)
+        }
+    }
+}
+
 private var header: some View {
     VStack(spacing: 15) {
 
