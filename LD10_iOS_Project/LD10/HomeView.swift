@@ -341,8 +341,9 @@ private var navigationPanel: some View {
 
 
 private var header: some View {
-    VStack(spacing: 5) {
+    VStack(spacing: 15) {
 
+        VStack(spacing: 5) {
         if let path = Bundle.main.path(
             forResource: "LD10Logo_Cream",
             ofType: "png",
@@ -375,6 +376,7 @@ private var header: some View {
             .italic()
             .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
             .multilineTextAlignment(.center)
+        }
 
         if let path = Bundle.main.path(
             forResource: "LD10Hero",
