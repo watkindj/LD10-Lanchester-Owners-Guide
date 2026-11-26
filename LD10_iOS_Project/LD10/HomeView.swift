@@ -341,7 +341,7 @@ private var navigationPanel: some View {
 
 
 private var header: some View {
-    VStack(spacing: 15) {
+    VStack(spacing: 5) {
 
         if let path = Bundle.main.path(
             forResource: "LD10Logo_Cream",
