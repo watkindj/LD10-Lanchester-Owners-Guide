@@ -367,7 +367,7 @@ private var header: some View {
             Image(uiImage: script)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 48)
+                .frame(height: 35)
         }
 
         Text("Briggs and Barker Owner's Guide")
