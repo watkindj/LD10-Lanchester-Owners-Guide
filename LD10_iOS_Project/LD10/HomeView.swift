@@ -174,13 +174,13 @@ struct HomeView: View {
     @State private var showOriginalHome = false
 
     private let sections = [
-        GuideSection(id: "maintenance", title: "Maintenance", subtitle: "Workshop information and guidance", symbol: "wrench.and.screwdriver", file: "index_5.htm"),
-        GuideSection(id: "controls", title: "Technical Information", subtitle: "Systems, components and details", symbol: "gearshape.2", file: "index_6.htm"),
+        GuideSection(id: "maintenance", title: "Maintenance", subtitle: "Workshop Information and Guidance", symbol: "wrench.and.screwdriver", file: "index_5.htm"),
+        GuideSection(id: "controls", title: "Technical Information", subtitle: "Systems, Components and Details", symbol: "gearshape.2", file: "index_6.htm"),
         GuideSection(id: "trim", title: "Interior & Exterior", subtitle: "Upholstery, Trim, Body & Chromework", symbol: "car.side", file: "trim/ntrim.htm"),
-        GuideSection(id: "spares", title: "Spares", subtitle: "Parts and spares information", symbol: "shippingbox", file: "docs/spares.htm"),
-        GuideSection(id: "cars", title: "Owners' Cars", subtitle: "Cars and owner information", symbol: "car.2", file: "docs/cars.htm"),
-        GuideSection(id: "photos", title: "Photographs", subtitle: "Original photo collection", symbol: "photo.on.rectangle.angled", file: "photos/photos.htm"),
-        GuideSection(id: "contact", title: "Contact", subtitle: "Original site contact details", symbol: "envelope", file: "docs/contact.htm")
+        GuideSection(id: "spares", title: "Spares", subtitle: "Parts and Spares Information", symbol: "shippingbox", file: "docs/spares.htm"),
+        GuideSection(id: "cars", title: "Owners' Cars", subtitle: "Cars and Owner Information", symbol: "car.2", file: "docs/cars.htm"),
+        GuideSection(id: "photos", title: "Photographs", subtitle: "Original Photo Collection", symbol: "photo.on.rectangle.angled", file: "photos/photos.htm"),
+        GuideSection(id: "contact", title: "Contact", subtitle: "Original Site Contact Details", symbol: "envelope", file: "docs/contact.htm")
     ]
 
 
