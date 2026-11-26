@@ -370,13 +370,14 @@ private var header: some View {
                 .scaledToFit()
                 .frame(height: 35)
         }
+        }
 
         Text("Briggs and Barker Owner's Guide")
             .font(.system(size: 17, weight: .semibold, design: .serif))
             .italic()
             .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
             .multilineTextAlignment(.center)
-        }
+        
 
         if let path = Bundle.main.path(
             forResource: "LD10Hero",
