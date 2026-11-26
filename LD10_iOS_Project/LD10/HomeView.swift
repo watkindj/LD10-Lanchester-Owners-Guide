@@ -377,6 +377,7 @@ private var header: some View {
             .italic()
             .foregroundStyle(Color(red: 0.96, green: 0.91, blue: 0.79))
             .multilineTextAlignment(.center)
+            .padding(.top, 8)
         
 
         if let path = Bundle.main.path(
