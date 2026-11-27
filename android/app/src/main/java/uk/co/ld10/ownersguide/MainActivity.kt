@@ -296,78 +296,99 @@ class MainActivity : Activity() {
         }
     }
 
-    private fun installPackage(name: String) {
-        val marker = File(filesDir, ".ld10-$name-installed")
 
-        if (marker.exists()) return
+private fun installPackage(name: String) {
+    val isPhotoPackage = name.startsWith("Photos-")
 
-        val zipFile = File(cacheDir, "$name.zip")
-        val address = URL("$packageBase$name.zip")
-
-        val connection =
-            address.openConnection() as HttpURLConnection
-
-        connection.connectTimeout = 30000
-        connection.readTimeout = 60000
-        connection.requestMethod = "GET"
-
-        try {
-            connection.connect()
-
-            if (connection.responseCode != 200) {
-                throw Exception(
-                    "Download failed for $name: HTTP ${connection.responseCode}"
-                )
-            }
-
-            connection.inputStream.use { input ->
-                FileOutputStream(zipFile).use { output ->
-                    input.copyTo(output)
-                }
-            }
-
-            unzipPackage(zipFile)
-            marker.writeText("installed")
-
-        } finally {
-            connection.disconnect()
-            zipFile.delete()
-        }
+    val markerName = if (isPhotoPackage) {
+        ".ld10-$name-installed-v2"
+    } else {
+        ".ld10-$name-installed"
     }
 
-    private fun unzipPackage(zipFile: File) {
-        val root = siteRoot.canonicalFile
-        val rootPath = root.path + File.separator
+    val marker = File(filesDir, markerName)
 
-        ZipInputStream(
-            BufferedInputStream(zipFile.inputStream())
-        ).use { zip ->
+    if (marker.exists()) return
 
-            var entry = zip.nextEntry
+    val zipFile = File(cacheDir, "$name.zip")
+    val address = URL("$packageBase$name.zip")
 
-            while (entry != null) {
-                val destination =
-                    File(root, entry.name).canonicalFile
+    val connection =
+        address.openConnection() as HttpURLConnection
 
-                if (!destination.path.startsWith(rootPath)) {
-                    throw Exception("Invalid ZIP entry detected")
-                }
+    connection.connectTimeout = 30000
+    connection.readTimeout = 60000
+    connection.requestMethod = "GET"
 
-                if (entry.isDirectory) {
-                    destination.mkdirs()
-                } else {
-                    destination.parentFile?.mkdirs()
+    try {
+        connection.connect()
 
-                    FileOutputStream(destination).use { output ->
-                        zip.copyTo(output)
-                    }
-                }
+        if (connection.responseCode != 200) {
+            throw Exception(
+                "Download failed for $name: HTTP ${connection.responseCode}"
+            )
+        }
 
-                zip.closeEntry()
-                entry = zip.nextEntry
+        connection.inputStream.use { input ->
+            FileOutputStream(zipFile).use { output ->
+                input.copyTo(output)
             }
         }
+
+        val destination = if (isPhotoPackage) {
+            File(siteRoot, "photos")
+        } else {
+            siteRoot
+        }
+
+        unzipPackage(zipFile, destination)
+        marker.writeText("installed")
+
+    } finally {
+        connection.disconnect()
+        zipFile.delete()
     }
+}
+
+private fun unzipPackage(zipFile: File, destinationRoot: File) {
+    val root = destinationRoot.canonicalFile
+    root.mkdirs()
+
+    val rootPath = root.path + File.separator
+
+    ZipInputStream(
+        BufferedInputStream(zipFile.inputStream())
+    ).use { zip ->
+
+        var entry = zip.nextEntry
+
+        while (entry != null) {
+            val destination =
+                File(root, entry.name).canonicalFile
+
+            if (
+                destination.path != root.path &&
+                !destination.path.startsWith(rootPath)
+            ) {
+                throw Exception("Invalid ZIP entry detected")
+            }
+
+            if (entry.isDirectory) {
+                destination.mkdirs()
+            } else {
+                destination.parentFile?.mkdirs()
+
+                FileOutputStream(destination).use { output ->
+                    zip.copyTo(output)
+                }
+            }
+
+            zip.closeEntry()
+            entry = zip.nextEntry
+        }
+    }
+}
+
 
     private fun safeFile(relativePath: String): File {
         val root = siteRoot.canonicalFile
