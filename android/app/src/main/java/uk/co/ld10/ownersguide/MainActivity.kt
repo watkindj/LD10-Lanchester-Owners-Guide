@@ -120,6 +120,23 @@ brandingPanel.addView(
             setTextColor(green)
             gravity = android.view.Gravity.CENTER
         }
+        
+val heroImage = ImageView(this).apply {
+    setImageResource(R.drawable.ld10hero)
+    scaleType = ImageView.ScaleType.FIT_CENTER
+    adjustViewBounds = true
+    clipToOutline = true
+
+    background = android.graphics.drawable.GradientDrawable().apply {
+        cornerRadius = 15 * resources.displayMetrics.density
+        setColor(cream)
+        setStroke(
+            (3 * resources.displayMetrics.density).toInt(),
+            cream
+        )
+    }
+}
+
 
         val strapline = TextView(this).apply {
             text = "History · Engineering · Preservation"
