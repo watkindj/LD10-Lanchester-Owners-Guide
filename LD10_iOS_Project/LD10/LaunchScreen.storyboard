@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="A1B2C3D4E5F6071829300001">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="A1B2C3D4E5F6071829300002">
+            <objects>
+                <viewController id="A1B2C3D4E5F6071829300001" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A1B2C3D4E5F6071829300003">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="A1B2C3D4E5F6071829300004"/>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0706" green="0.2196" blue="0.1294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="A1B2C3D4E5F6071829300004" firstAttribute="leading" secondItem="A1B2C3D4E5F6071829300003" secondAttribute="leading" id="A1B2C3D4E5F6071829300005"/>
+                            <constraint firstAttribute="trailing" secondItem="A1B2C3D4E5F6071829300004" secondAttribute="trailing" id="A1B2C3D4E5F6071829300006"/>
+                            <constraint firstItem="A1B2C3D4E5F6071829300004" firstAttribute="top" secondItem="A1B2C3D4E5F6071829300003" secondAttribute="top" id="A1B2C3D4E5F6071829300007"/>
+                            <constraint firstAttribute="bottom" secondItem="A1B2C3D4E5F6071829300004" secondAttribute="bottom" id="A1B2C3D4E5F6071829300008"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A1B2C3D4E5F6071829300009" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchScreen" width="1290" height="2796"/>
+    </resources>
+</document>
