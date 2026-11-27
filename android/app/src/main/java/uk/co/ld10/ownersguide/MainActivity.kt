@@ -254,7 +254,19 @@ root.addView(
     }
 )
         root.addView(heading)
-        root.addView(strapline)
+
+root.addView(
+    heroImage,
+    LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT,
+        (190 * resources.displayMetrics.density).toInt()
+    ).apply {
+        topMargin = (10 * resources.displayMetrics.density).toInt()
+        bottomMargin = (10 * resources.displayMetrics.density).toInt()
+    }
+)
+
+root.addView(strapline)
         root.addView(statusText)
         root.addView(backButton)
         root.addView(buttonPanel)
