@@ -257,7 +257,7 @@ root.addView(
         bottomMargin = (12 * resources.displayMetrics.density).toInt()
     }
 )
-        root.addView(heading)
+        root.addView(homeheading)
 
 root.addView(
     heroImage,
