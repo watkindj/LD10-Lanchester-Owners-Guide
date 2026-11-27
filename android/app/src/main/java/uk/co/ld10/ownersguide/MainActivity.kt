@@ -8,6 +8,7 @@ import android.net.Uri
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ImageView
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -72,18 +73,16 @@ class MainActivity : Activity() {
             setPadding(20, 18, 20, 12)
         }
 
-        val brand = TextView(this).apply {
-            text = "LANCHESTER"
-            textSize = 29f
-            setTextColor(green)
-            gravity = android.view.Gravity.CENTER
+        val brand = ImageView(this).apply {
+    setImageResource(R.drawable.ld10logo_cream)
+    scaleType = ImageView.ScaleType.FIT_CENTER
+    adjustViewBounds = true
         }
 
-        val logo = TextView(this).apply {
-            text = "LD10"
-            textSize = 38f
-            setTextColor(green)
-            gravity = android.view.Gravity.CENTER
+        val logo = ImageView(this).apply {
+    setImageResource(R.drawable.ld10script_cream)
+    scaleType = ImageView.ScaleType.FIT_CENTER
+    adjustViewBounds = true
         }
 
         val heading = TextView(this).apply {
@@ -199,8 +198,25 @@ class MainActivity : Activity() {
             }
         }
 
-        root.addView(brand)
-        root.addView(logo)
+        root.addView(
+    brand,
+    LinearLayout.LayoutParams(
+        (230 * resources.displayMetrics.density).toInt(),
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    ).apply {
+        gravity = android.view.Gravity.CENTER
+    }
+)
+
+root.addView(
+    logo,
+    LinearLayout.LayoutParams(
+        (145 * resources.displayMetrics.density).toInt(),
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    ).apply {
+        gravity = android.view.Gravity.CENTER
+    }
+)
         root.addView(heading)
         root.addView(strapline)
         root.addView(statusText)
