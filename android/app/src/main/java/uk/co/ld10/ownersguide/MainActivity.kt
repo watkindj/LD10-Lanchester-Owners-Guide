@@ -31,6 +31,10 @@ class MainActivity : Activity() {
     private lateinit var statusText: TextView
     private lateinit var buttonPanel: LinearLayout
     private lateinit var backButton: Button
+    private lateinit var brandingPanel: LinearLayout
+    private lateinit var homeHeading: TextView
+    private lateinit var heroImage: ImageView
+    private lateinit var strapline: TextView
 
     private val worker = Executors.newSingleThreadExecutor()
 
@@ -86,7 +90,7 @@ val logo = ImageView(this).apply {
     adjustViewBounds = true
 }
 
-val brandingPanel = LinearLayout(this).apply {
+brandingPanel = LinearLayout(this).apply {
     orientation = LinearLayout.VERTICAL
     setBackgroundColor(green)
     val padding = (12 * resources.displayMetrics.density).toInt()
@@ -114,14 +118,14 @@ brandingPanel.addView(
     }
 )
 
-        val heading = TextView(this).apply {
+        homeHeading = TextView(this).apply {
             text = "Briggs and Barker Owner's Guide"
             textSize = 19f
             setTextColor(green)
             gravity = android.view.Gravity.CENTER
         }
         
-val heroImage = ImageView(this).apply {
+heroImage = ImageView(this).apply {
     setImageResource(R.drawable.ld10hero)
     scaleType = ImageView.ScaleType.FIT_CENTER
     adjustViewBounds = true
@@ -138,7 +142,7 @@ val heroImage = ImageView(this).apply {
 }
 
 
-        val strapline = TextView(this).apply {
+        strapline = TextView(this).apply {
             text = "History · Engineering · Preservation"
             textSize = 14f
             setTextColor(green)
