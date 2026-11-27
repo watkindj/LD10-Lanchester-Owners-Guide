@@ -73,17 +73,46 @@ class MainActivity : Activity() {
             setPadding(20, 18, 20, 12)
         }
 
-        val brand = ImageView(this).apply {
+
+val brand = ImageView(this).apply {
     setImageResource(R.drawable.ld10logo_cream)
     scaleType = ImageView.ScaleType.FIT_CENTER
     adjustViewBounds = true
-        }
+}
 
-        val logo = ImageView(this).apply {
+val logo = ImageView(this).apply {
     setImageResource(R.drawable.ld10script_cream)
     scaleType = ImageView.ScaleType.FIT_CENTER
     adjustViewBounds = true
-        }
+}
+
+val brandingPanel = LinearLayout(this).apply {
+    orientation = LinearLayout.VERTICAL
+    setBackgroundColor(green)
+    val padding = (12 * resources.displayMetrics.density).toInt()
+    setPadding(padding, padding, padding, padding)
+    gravity = android.view.Gravity.CENTER
+}
+
+brandingPanel.addView(
+    brand,
+    LinearLayout.LayoutParams(
+        (230 * resources.displayMetrics.density).toInt(),
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    ).apply {
+        gravity = android.view.Gravity.CENTER
+    }
+)
+
+brandingPanel.addView(
+    logo,
+    LinearLayout.LayoutParams(
+        (145 * resources.displayMetrics.density).toInt(),
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    ).apply {
+        gravity = android.view.Gravity.CENTER
+    }
+)
 
         val heading = TextView(this).apply {
             text = "Briggs and Barker Owner's Guide"
