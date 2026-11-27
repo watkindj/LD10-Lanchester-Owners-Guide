@@ -290,6 +290,10 @@ root.addView(strapline)
     private fun showHome() {
         webView.stopLoading()
         webView.visibility = View.GONE
+        brandingPanel.visibility = View.VISIBLE
+        homeHeading.visibility = View.VISIBLE
+        heroImage.visibility = View.VISIBLE
+        strapline.visibility = View.VISIBLE
         buttonPanel.visibility = View.VISIBLE
         backButton.visibility = View.GONE
         statusText.text = "Welcome to the Lanchester LD10 guide"
@@ -314,6 +318,10 @@ root.addView(strapline)
                     statusText.text = section.title
                     buttonPanel.visibility = View.GONE
                     backButton.visibility = View.VISIBLE
+                    brandingPanel.visibility = View.GONE
+                    homeHeading.visibility = View.GONE
+                    heroImage.visibility = View.GONE
+                    strapline.visibility = View.GONE
                     webView.visibility = View.VISIBLE
                     webView.loadUrl(Uri.fromFile(target).toString())
                 }
