@@ -227,23 +227,13 @@ brandingPanel.addView(
             }
         }
 
-        root.addView(
-    brand,
-    LinearLayout.LayoutParams(
-        (230 * resources.displayMetrics.density).toInt(),
-        LinearLayout.LayoutParams.WRAP_CONTENT
-    ).apply {
-        gravity = android.view.Gravity.CENTER
-    }
-)
-
 root.addView(
-    logo,
+    brandingPanel,
     LinearLayout.LayoutParams(
-        (145 * resources.displayMetrics.density).toInt(),
+        LinearLayout.LayoutParams.MATCH_PARENT,
         LinearLayout.LayoutParams.WRAP_CONTENT
     ).apply {
-        gravity = android.view.Gravity.CENTER
+        bottomMargin = (12 * resources.displayMetrics.density).toInt()
     }
 )
         root.addView(heading)
